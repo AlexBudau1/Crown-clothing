@@ -16,7 +16,6 @@ const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormField);
     const {displayName, email, password, confirmPassword} = formFields;
 
-    console.log(formFields);
 
     const resetFormFields = () => {
         setFormFields(defaultFormField)
@@ -32,7 +31,6 @@ const SignUpForm = () => {
 
         try{
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
-            
             await createUserDocumentFromAuth(user, {displayName});
             resetFormFields();
         }catch(error){
@@ -54,7 +52,7 @@ const SignUpForm = () => {
 
     return(
         <div className="sign-up-container">
-            <h2>"Don't have an account?"</h2>
+            <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
 
@@ -66,7 +64,7 @@ const SignUpForm = () => {
 
                 <FormInput label="Confirm Password" type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword}/>
                 
-                <Button children="Sign up" buttonType="inverted" type="submit" />
+                <Button children="SIGN UP" buttonType="inverted" type="submit" />
             </form>
         </div>
     )
