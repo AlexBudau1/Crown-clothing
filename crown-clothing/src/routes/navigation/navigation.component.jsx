@@ -3,7 +3,7 @@ import {Outlet, Link} from 'react-router-dom';
 
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import { UserContext } from '../../context/user.context';
-import { CartContext, CartProvider } from '../../context/dropdown.context';
+import { CartContext } from '../../context/cart.context';
 import './navigation.styles.scss';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
