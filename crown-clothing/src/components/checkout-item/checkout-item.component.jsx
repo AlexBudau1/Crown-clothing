@@ -2,14 +2,16 @@ import './checkout-item.styles.scss';
 import {ReactComponent as RightArrow} from '../../assets/right-arrow.svg';
 import {ReactComponent as LeftArrow} from '../../assets/left-arrow.svg';
 import {ReactComponent as Close} from '../../assets/close.svg';
-import { useContext } from 'react';
-import { CartContext } from '../../context/cart.context';
+import {useSelector, useDispatch} from 'react-redux';
+import {selectCartItems} from '../../store/cart/cart.selector';
+import {addItemToCart, removeItemFormCart, deleteItemFromCart} from '../../store/cart/cart.action';
 
 const CheckoutItem = (checkoutItem)=>{
 
-    const {addItemToCart, removeItemFormCart, deleteItemFromCart} = useContext(CartContext);
     const {name,price, quantity, imageUrl} = checkoutItem;
 
+    const dispatch = useDispatch();
+    const cartItems = useSelector(selectCartItems);
 
     return(
         <div className='checkout-item'>
@@ -22,16 +24,16 @@ const CheckoutItem = (checkoutItem)=>{
                 </div>
                 <div className='quantity porperty'>
                     <div className='quantity-container'>
-                        <LeftArrow className="right-arrow" onClick={()=>{removeItemFormCart(checkoutItem)}}/>
+                        <LeftArrow className="right-arrow" onClick={()=>{dispatch(removeItemFormCart(cartItems, checkoutItem))}}/>
                         <span className='quantity-value'>{quantity}</span>
-                        <RightArrow className="left-arrow" onClick={()=>{addItemToCart(checkoutItem)}}/>
+                        <RightArrow className="left-arrow" onClick={()=>{dispatch(addItemToCart(cartItems, checkoutItem))}}/>
                     </div>
                 </div>
                 <div className='price porperty'>
                     <span>{price * quantity}</span>
                 </div>
                 <div className='remove porperty'>
-                    <Close className='close' onClick={()=>{deleteItemFromCart(checkoutItem)}}/>
+                    <Close className='close' onClick={()=>{dispatch(deleteItemFromCart(cartItems, checkoutItem))}}/>
                 </div>
             </div>
         </div>

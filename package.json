@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "reselect": "^4.1.7",
     "sass": "^1.57.1"
   }
 }
